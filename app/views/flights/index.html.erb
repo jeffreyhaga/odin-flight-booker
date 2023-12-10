@@ -1,0 +1,31 @@
+<h1>All Flights</h1>
+
+<%=  form_with model: @flight, url: root_path, method: :get do |form| %>
+    <%= form.label :departure_airport_id, "Depature Airport"%>
+    <%= form.collection_select :departure_airport_id, Airport.order(:id), :id, :airport_code %>
+    <%= form.label :arriving_airport_id, "Arrival Airport"%>
+    <%= form.collection_select :arriving_airport_id, Airport.order(:id), :id, :airport_code %>
+    <%= form.label :passengers, "Number of Passengers"%>
+    <%= form.select :passengers, options_for_select([1, 2, 3, 4]) %>
+    <%= form.label :start, "Depature Time"%>
+    <%= form.collection_select :start, Flight.order(:id), :start, :flight_date_text %>
+    <%= form.submit "Submit" %>
+<% end %>
+
+<h2>Flight Results</h2>
+
+<%= form_with url: new_booking_path, method: :get do |form| %>
+    <% if @flights.any? %>
+        <% @flights.each do |flight| %>
+            <%= radio_button_tag "flight_id", flight.id %>
+            <label>
+            Flight from <%= flight.departure_airport.airport_code %> to <%= flight.arrival_airport.airport_code %> departing at <%= flight.flight_date_text %>
+            </label>
+            <br>
+        <% end %>
+            <%= number_field_tag :passengers, @passenger_count || 1, min: 1, id: 'passenger-field' %>
+        <%= submit_tag "Select Flight" %>
+     <% else %>
+    <p>No flights found, please search again</p>
+    <% end %>
+<% end %>
