@@ -1,0 +1,16 @@
+<h1>Booking confirmation</h1>
+
+<p>
+  Your booking, your booking is now complete.
+  <%= @booking %>
+</p>
+<p>
+  Your flight information:
+</p>
+
+<h2>Flight ID: <%= @flight.id %></h2>
+<h2>Flight Time: <%= @flight.start.strftime("%I:%M%p on %d/%m/%Y") %></h2>
+<h2>Flight Duration: <%= @flight.duration %> minutes</h2>
+<h2>Departure Airport: <%= @flight.departure_airport.airport_code %></h2>
+<h2>Arrival Airport: <%= @flight.arrival_airport.airport_code %></h2>
+

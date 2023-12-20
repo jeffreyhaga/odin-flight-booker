@@ -15,6 +15,7 @@ class FlightsController < ApplicationController
 
   def search_params
     params.permit(:departure_airport_id, :arrival_airport_id, :start, :passengers)
+
   end
 
   def search_params_present?

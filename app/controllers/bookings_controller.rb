@@ -14,6 +14,9 @@ class BookingsController < ApplicationController
     @booking.flight = @flight
 
     if @booking.save
+      @booking.passengers.each do |passenger|
+        PassengerMailer.confirmation(@booking, passenger).deliver_now
+      end
       redirect_to @booking, notice: "Your booking was successful!"
     else
       # Ensure @flight is set when re-rendering :new

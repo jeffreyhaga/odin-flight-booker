@@ -4,7 +4,7 @@ class Flight < ApplicationRecord
   has_many :bookings
 
   def flight_date_text
-    start.strftime("%d/%m/%Y")
+    start.strftime('%d/%m/%Y')
   end
 
   def self.search(search_params)
