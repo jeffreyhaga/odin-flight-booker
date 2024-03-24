@@ -23,7 +23,7 @@
             </label>
             <br>
         <% end %>
-            <%= number_field_tag :passengers, @passenger_count || 1, min: 1, id: 'passenger-field' %>
+            Number of Passengers: <%= number_field_tag :passengers, @passenger_count || 1, min: 1, id: 'passenger-field' %>
         <%= submit_tag "Select Flight" %>
      <% else %>
     <p>No flights found, please search again</p>
